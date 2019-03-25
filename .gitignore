@@ -1,4 +1,5 @@
 package-lock.json
 k8s-sample/db-migrate/node_modules/
 k8s-sample/person-service/node_modules/
+k8s-sample/company-service/node_modules/
 .env
