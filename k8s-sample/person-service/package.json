@@ -1,0 +1,31 @@
+{
+  "name": "person-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js ./src/server.js",
+    "startServer": "node --require dotenv/config ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^2.0.0",
+    "express": "^4.16.4",
+    "pg": "^4.5.7",
+    "pg-hstore": "^2.3.2",
+    "pg-minify": "^0.3.2",
+    "pg-promise": "^3.9.1",
+    "pg-transaction": "^1.0.4",
+    "sequelize": "^5.1.1"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "lodash.random": "^3.2.0",
+    "lodash.times": "^4.3.2",
+    "nodemon": "^1.18.10",
+    "sequelize-cli": "^5.4.0"
+  }
+}
