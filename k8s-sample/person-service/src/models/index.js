@@ -16,7 +16,8 @@ const loadDB = (connectionString)=>{
         define: {
             timestamps: false
         },
-        logging: false
+        logging: false,
+        omitNull: true
     },  {});
 
     const db  = new Sequelize(
