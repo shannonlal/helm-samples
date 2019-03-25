@@ -1,0 +1,36 @@
+{
+  "name": "db-migrate",
+  "version": "1.0.0",
+  "description": "Helm Chart DB Migration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:migrate:undo": "node_modules/.bin/sequelize db:migrate:undo",
+    "db:migration:generate": "node_modules/.bin/sequelize migration:generate --name $name"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shannonlal/helm-samples.git"
+  },
+  "keywords": [
+    "Kubernetes",
+    "Helm",
+    "Sequelize Migration"
+  ],
+  "author": "Sample Helm DB Project",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shannonlal/helm-samples/issues"
+  },
+  "homepage": "https://github.com/shannonlal/helm-samples/#readme",
+  "devDependencies": {
+    "dotenv": "^2.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "pg": "^6.4.2",
+    "sequelize": "^3.24.3",
+    "sequelize-cli": "^4.0.0"
+  }
+}
