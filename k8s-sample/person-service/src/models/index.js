@@ -1,4 +1,5 @@
 
+const Sequelize = require('sequelize');
 /**
  * 
  * @param {string} connectionString 
