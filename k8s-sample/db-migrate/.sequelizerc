@@ -1,0 +1,8 @@
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('config', 'database.js'),
+  'models-path': path.resolve('node_modules', '@microsigns', 'ms-common-dao', 'app', 'src', 'common-dao', 'models'),
+  'seeders-path': path.resolve('db', 'seeders'),
+  'migrations-path': path.resolve('db', 'migrations')
+}
