@@ -21,6 +21,7 @@ DB_URL=postgres://postgres:postgres@127.0.0.1:5432/test
 First create a .env file with the following properties
 ```
 DB_URL=postgres://postgres:postgres@127.0.0.1:5432/k8s-sample
+
 ```
 
 ## Build the Docker container
