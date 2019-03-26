@@ -30,33 +30,10 @@ npm run docker:build
 
 ## Push to Docker Hub
 ```
-npm run docker:hub
+npm run docker:push
 ```
 
 ## Run Migration in Docker
 ### NOTES: Change IP Address
 `docker run -d -id -e "DB_URL=postgres://postgres:postgres@192.168.0.164:5432/k8s-sample" -e  -p3008:3008  microsigns/k8s-db-migration`
 
-## Local Mac notes.
-
-There are two files you will need to update to test the migration with docker locally.
-
-In the directory /usr/local/var/postgres/pg_hba.conf
-```
-# All IP Address
-host    all             all             0.0.0.0/0               trust
-# IPv4 local connections:
-host    all             all             127.0.0.1/32            trust
-# Allow for Docker:
-host    all             all             192.168.0.164/32        trust
-# IPv6 local connections:
-```
-
-Allow for incoming requests for all ports
-
-usr/local/var/postgres/postgresql.conf
-```
-# - Connection Settings -
-//Uncomment
-listen_addresses = '*'          # what IP address(es) to listen on;
-```
