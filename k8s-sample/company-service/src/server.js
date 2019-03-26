@@ -10,6 +10,6 @@ const apiCompany = require("./app/company");
 const app = express();
 app.use(bodyParser.json());
 
-apiPerson(app, db);
+apiCompany(app, db);
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));

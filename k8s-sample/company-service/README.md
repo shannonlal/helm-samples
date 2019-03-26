@@ -36,5 +36,10 @@ npm run docker:push
 
 ## Run Migration in Docker
 ### NOTES: Change IP Address
-`docker run -d -id -e "DB_URL=postgres://postgres:postgres@192.168.0.164:5432/k8s-sample" -e  -p3008:3008  microsigns/k8s-db-migration`
+`docker run -d -id -p 3009:3009 -e "DB_URL=postgres://postgres:postgres@192.168.0.164:5432/k8s-sample" -e "COMPANY_PORT=3009"  microsigns/k8s-company-service:1.0.1`
 
+
+## Test Connection
+```
+curl http://localhost:3009/api/company
+```
