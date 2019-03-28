@@ -15,4 +15,4 @@ WORKDIR person-service
 RUN npm install --loglevel warn --no-optionals --ignore-scripts
 ENV PLANOGRAM_DEVICE_MANAGEMENT_LOCAL_PORT 80
 ENTRYPOINT [ "/usr/local/bin/pm2-docker" ]
-CMD ["start", "start-server.js"]
+CMD ["start", "src/server.js"]

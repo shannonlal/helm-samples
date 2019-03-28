@@ -1,11 +1,13 @@
 {
   "name": "company-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "./node_modules/.bin/nodemon --require dotenv/config ./src/server.js",
-    "startServer": "node --require dotenv/config ./src/server.js"
+    "startServer": "node --require dotenv/config ./src/server.js",
+    "docker:build": "docker build  -t microsigns/k8s-company-service:\"$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')\" .",
+    "docker:push": "docker push microsigns/k8s-company-service:\"$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')\""
   },
   "keywords": [],
   "author": "",
