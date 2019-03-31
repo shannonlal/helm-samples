@@ -9,15 +9,15 @@ module.exports = (app, db) => {
   
     app.post("/api/company", (req, res) => 
       db.models.company.create({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name
+        name: req.body.name,
+        description: req.body.description
       }).then( (result) => res.json(result) )
     );
   
     app.put( "/api/company/:id", (req, res) =>
       db.models.company.update({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name
+        name: req.body.name,
+        description: req.body.description
       },
       {
         where: {
