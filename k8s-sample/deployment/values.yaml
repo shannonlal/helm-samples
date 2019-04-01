@@ -12,3 +12,7 @@ database:
   nodeSelector: {}
   tolerations: []
   affinity: {}
+
+person:
+  port: 3008
+ 

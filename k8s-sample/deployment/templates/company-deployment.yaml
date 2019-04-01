@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: company
+  labels:
+    app: company
+    chart: {{ template "company.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: company
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: company
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: company
+          image: microsigns/k8s-company-service
+          imagePullPolicy: Always
+          env:
+            - name: DB_URL
+              value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
+            - name: COMPANY_PORT
+              value: {{ .Values.company.port}}
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 1
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /api/company
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+            timeoutSeconds: 10
+            failureThreshold: 5
+          resources:
+{{ toYaml .Values.company.resources | indent 12 }}
+    {{- with .Values.company.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.company.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.company.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      imagePullSecrets:
+        - name: invue-registry-secret

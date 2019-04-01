@@ -1,0 +1,65 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: person
+  labels:
+    app: person
+    chart: {{ template "company.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: person
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: person
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: person
+          image: microsigns/k8s-person-service
+          imagePullPolicy: Always
+          env:
+            - name: DB_URL
+              value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
+            - name: PERSON_PORT
+              value: {{ .Values.person.port}}
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 1
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /api/person
+              port: http
+            initialDelaySeconds: 45
+            periodSeconds: 20
+            timeoutSeconds: 10
+            failureThreshold: 5
+          resources:
+{{ toYaml .Values.person.resources | indent 12 }}
+    {{- with .Values.person.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.person.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.person.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      imagePullSecrets:
+        - name: invue-registry-secret
