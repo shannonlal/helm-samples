@@ -15,4 +15,8 @@ database:
 
 person:
   port: 3008
+
+company:
+  port: 3009
  
+hostname: test-k8s-api-shopscreen.microsignage.com 
