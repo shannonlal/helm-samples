@@ -1,0 +1,10 @@
+sentryDsn: https://bbc287531aa54d0391d0c270a96a9a72:79aa78c036e34a7f9b48e5bab0442bae@alerts.robotinfra.tools/26
+graylog2: logging-gelf.microsignage.com
+
+database:
+  password: tVMhDGDw9DyaMBdFJL4ptruubXhhkepT
+  persistence:
+    enabled: true
+    storageClass: standard
+    accessMode: ReadWriteOnce
+    size: 20Gi
