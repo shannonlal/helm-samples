@@ -1,0 +1,17 @@
+{{- if .Values.database.persistence.enabled }}
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: company-db-pvc
+  chart: {{ template "company.chart" . }}
+  release: {{ .Release.Name }}
+  heritage: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.database.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.database.persistence.size | quote }}
+  storageClassName: {{ .Values.database.persistence.storageClass }}
+{{- end }}
