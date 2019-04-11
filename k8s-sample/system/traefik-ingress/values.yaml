@@ -1,0 +1,85 @@
+## Default values for Traefik
+image: traefik
+## can switch the service type to NodePort if required
+serviceType: LoadBalancer
+# loadBalancerIP should be a reserved IP
+loadBalancerIP: 18.220.143.213
+# loadBalancerSourceRanges: []
+whiteListSourceRange: []
+externalTrafficPolicy: Cluster
+replicas: 1
+deploymentStrategy:
+  type: Recreate
+  rollingUpdate: null
+
+cpuRequest: 100m
+memoryRequest: 256Mi
+cpuLimit: 100m
+memoryLimit: 256Mi
+debug:
+  enabled: false
+
+ssl:
+  enabled: true
+  enforced: true
+  insecureSkipVerify: false
+  # Base64 encoded cert and private key. Each should be in one line.
+  # For example, to create the base64 value from a file:
+  # cat letsencrypt/live/robotinfra.tools/fullchain.pem | base64 -w 0
+
+acme:
+  enabled: true
+  email: ops@robotinfra.tools
+  staging: false
+  logging: true
+  ## ACME challenge type: "tls-sni-01", "http-01" or "dns-01"
+  ## Note the chart's default of tls-sni-01 has been DEPRECATED and (except in
+  ## certain circumstances) DISABLED by Let's Encrypt. It remains as a default
+  ## value in this chart to preserve legacy behavior and avoid a breaking
+  ## change. Users of this chart should strongly consider making the switch to
+  ## the dns-01 or http-01 (available since v1.5) challenge.
+  challengeType: http-01
+
+  ## Save ACME certs to a persistent volume. WARNING: If you do not do this, you will re-request
+  ## certs every time a pod (re-)starts and you WILL be rate limited!
+  persistence:
+    enabled: true
+    annotations: {}
+    storageClass: "standard"
+    accessMode: ReadWriteOnce
+    size: 100Mi
+
+dashboard:
+  enabled: true
+  domain: http://test-k8s-api-shopscreen.microsignage.com
+  auth:
+    basic:
+      captain: $apr1$Uew7WPxW$gcsWTMYwruUrOtBEAZgf30 # captain: cfc7d7c3518bac6fd2f21ba005f32e1
+  ingress:
+    annotations:
+      kubernetes.io/ingress.class: traefik
+
+rbac:
+  enabled: true
+
+## Enable the /metrics endpoint, for now only supports prometheus
+## set to true to enable metric collection by prometheus
+metrics:
+  prometheus:
+    enabled: false
+    buckets: [0.1,0.3,1.2,5]
+deployment:
+  # podAnnotations:
+  #   key: value
+  hostPort:
+    httpEnabled: false
+    httpsEnabled: false
+    dashboardEnabled: false
+sendAnonymousUsage: false
+
+## Timeouts
+##
+timeouts:
+  ## forwarding are timeouts for requests forwarded to the backend servers
+  forwarding:
+    responseHeaderTimeout: 60s
