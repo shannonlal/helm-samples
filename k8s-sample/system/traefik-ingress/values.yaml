@@ -51,7 +51,7 @@ acme:
 
 dashboard:
   enabled: true
-  domain: http://test-k8s-api-shopscreen.microsignage.com
+  domain: test-k8s-api-shopscreen.microsignage.com
   auth:
     basic:
       captain: $apr1$Uew7WPxW$gcsWTMYwruUrOtBEAZgf30 # captain: cfc7d7c3518bac6fd2f21ba005f32e1
