@@ -12,7 +12,7 @@ If you enable the dashboard, also point the dashboard domain/subdomain to this I
 ### Install
 
 ```bash
-helm install --version 1.56.1 --namespace kube-system traefik-ingress stable/traefik -f /system/traefik-ingress/values.yaml
+helm install --version 1.56.1 --namespace kube-system --name traefik-ingress stable/traefik -f system/traefik-ingress/values.yaml
 ```
 
 ### Upgrade
