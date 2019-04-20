@@ -18,8 +18,8 @@ spec:
           - path: /api/company
             backend:
               serviceName: company
-              servicePort: 80
+              servicePort: 3009
           - path: /api/person
             backend:
               serviceName: person
-              servicePort: 80
+              servicePort: 3008
