@@ -3,7 +3,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: db-pvc
+  name: company-db-pvc
   chart: {{ template "company.chart" . }}
   release: {{ .Release.Name }}
   heritage: {{ .Release.Service }}
