@@ -31,7 +31,7 @@ spec:
               value: "{{ .Values.company.port}}"
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3009
           readinessProbe:
             tcpSocket:
               port: http

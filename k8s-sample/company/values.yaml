@@ -5,8 +5,13 @@ database:
   host: shopscreen-db
   name: shopscreen
   user: shopscreen
+  password: tVMhDGDw9DyaMBdFJL4ptruubXhhkepT
   persistence:
-    enabled: false
+    enabled: true
+    storageClass: standard
+    accessMode: ReadWriteOnce
+    size: 20Gi
+
 
   resources: {}
   nodeSelector: {}

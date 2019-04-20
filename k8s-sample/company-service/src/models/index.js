@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
  * @param {string} connectionString 
  */
 const loadDB = (connectionString)=>{
-
+    console.log( 'Load DB');
     const connOptions = Object.assign({
         dialect: 'postgres',
         pool: {
@@ -24,9 +24,9 @@ const loadDB = (connectionString)=>{
         connectionString,
         connOptions
     );
-
+    console.log( 'Loaded Sequelize');
     const Company = db.import('./company');
-
+    console.log( 'Loaded Models');
     return db;
 };
 
