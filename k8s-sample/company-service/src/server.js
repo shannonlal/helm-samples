@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const PORT = process.env.COMPANY_PORT || 3009;
 const DB_URL = process.env.DB_URL;
+console.log('DB_URL', DB_URL);
 const {loadDB} = require("./models");
 const db = loadDB(DB_URL);
 console.log( 'DB Started');
