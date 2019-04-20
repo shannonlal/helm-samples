@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: person
-          image: docker.io/microsigns/k8s-person-service:1.0.4
+          image: docker.io/microsigns/k8s-person-service:1.0.5
           imagePullPolicy: Always
           env:
             - name: DB_URL
@@ -31,7 +31,7 @@ spec:
               value: "{{ .Values.person.port}}"
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3008
           readinessProbe:
             tcpSocket:
               port: http

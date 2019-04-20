@@ -2,7 +2,7 @@ insight:
   enabled: false
 
 database:
-  host: shopscreen-db
+  host: company-db
   name: shopscreen
   user: shopscreen
   password: tVMhDGDw9DyaMBdFJL4ptruubXhhkepT
