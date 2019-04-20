@@ -12,7 +12,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      targetPort: 3008
+      targetPort: 80
       name: http
   selector:
     app: person

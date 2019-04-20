@@ -22,16 +22,14 @@ spec:
     spec:
       containers:
         - name: company
-          image: docker.io/microsigns/k8s-company-service:1.0.7
+          image: docker.io/microsigns/k8s-company-service:1.0.8
           imagePullPolicy: Always
           env:
             - name: DB_URL
               value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
-            - name: COMPANY_PORT
-              value: "{{ .Values.company.port}}"
           ports:
             - name: http
-              containerPort: 3009
+              containerPort: 80
           readinessProbe:
             tcpSocket:
               port: http
