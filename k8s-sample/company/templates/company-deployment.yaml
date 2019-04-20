@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: company
-          image: microsigns/k8s-company-service
+          image: docker.io/microsigns/k8s-company-service:1.0.3
           imagePullPolicy: Always
           env:
             - name: DB_URL
