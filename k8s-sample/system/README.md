@@ -18,5 +18,5 @@ helm install --version 1.56.1 --namespace kube-system --name traefik-ingress sta
 ### Upgrade
 
 ```bash
-helm upgrade --version 1.56.1 --namespace kube-system traefik-ingress stable/traefik -f /system/traefik-ingress/values.yaml
+helm upgrade --version 1.56.1 --namespace kube-system traefik-ingress stable/traefik -f system/traefik-ingress/values.yaml
 ```

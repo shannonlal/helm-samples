@@ -3,7 +3,7 @@ image: traefik
 ## can switch the service type to NodePort if required
 serviceType: LoadBalancer
 # loadBalancerIP should be a reserved IP
-loadBalancerIP: 35.188.4.63
+# loadBalancerIP: 35.188.4.63
 # loadBalancerSourceRanges: []
 whiteListSourceRange: []
 externalTrafficPolicy: Cluster
