@@ -27,6 +27,8 @@ spec:
           env:
             - name: DB_URL
               value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
+            - name: PERSON_PORT
+              value: "80"
           ports:
             - name: http
               containerPort: 80

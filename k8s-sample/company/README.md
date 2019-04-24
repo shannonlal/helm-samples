@@ -4,6 +4,12 @@
 helm install company/
 ```
 
+## Upgrade a helm chart
+
+```
+helm upgrade ${helm deployment name} company/
+```
+
 ## Delete a Helm Chart Deployment
 ```
 helm delete "helm name"
