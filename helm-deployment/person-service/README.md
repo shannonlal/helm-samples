@@ -28,7 +28,7 @@ npm run docker:build
 npm run docker:push
 ```
 
-## Run Migration in Docker
+## Run Person in Docker
 ### NOTES: Change IP Address
 `docker run -d -id -p 3008:3008 -e "DB_URL=postgres://postgres:postgres@192.168.0.164:5432/k8s-sample" -e "PERSON_PORT=3008"  microsigns/k8s-person-service:1.0.2`
 

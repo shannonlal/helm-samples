@@ -1,6 +1,6 @@
-# DB Migration
+# Company Service
 
-The following is instructions for the Database Migration Micro Service
+The following is instructions for the Company Service 
 
 ## Project Installation
 
@@ -13,10 +13,10 @@ npm install
 Create a .env in the root of the project and add the following properties
 
 ```
-DB_URL=postgres://postgres:postgres@127.0.0.1:5432/test
+DB_URL=postgres://postgres:postgres@127.0.0.1:5432/k8s-sample
 ```
 
-## Run Migration
+## Run Service
 
 First create a .env file with the following properties
 ```
@@ -34,7 +34,7 @@ npm run docker:build
 npm run docker:push
 ```
 
-## Run Migration in Docker
+## Run Service in Docker
 ### NOTES: Change IP Address
 `docker run -d -id -p 3009:3009 -e "DB_URL=postgres://postgres:postgres@192.168.0.164:5432/k8s-sample" -e "COMPANY_PORT=3009"  microsigns/k8s-company-service:1.0.1`
 

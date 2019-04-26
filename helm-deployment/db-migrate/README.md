@@ -13,7 +13,7 @@ npm install
 Create a .env in the root of the project and add the following properties
 
 ```
-DB_URL=postgres://postgres:postgres@127.0.0.1:5432/test
+DB_URL=postgres://postgres:postgres@127.0.0.1:5432/k8s-sample
 ```
 
 ## Run Migration
