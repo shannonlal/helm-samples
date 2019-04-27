@@ -1,6 +1,6 @@
 {
   "name": "db-migrate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helm Chart DB Migration",
   "main": "index.js",
   "scripts": {

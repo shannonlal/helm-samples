@@ -1,0 +1,33 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-db-migration"
+  labels:
+    app: "{{ .Release.Name }}-db-migration"
+    chart: {{ template "company.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-weight": "-1"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-db-migration"
+      labels:
+        app: "{{ .Release.Name }}-db-migration"
+        release: {{ .Release.Name }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: db-migration-job
+          image: docker.io/microsigns/db-migrate:1.0.0
+          imagePullPolicy: Always
+          env:
+            - name: DB_URL
+              value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
+      resources: {}
+      imagePullSecrets:
+        - name: invue-registry-secret
