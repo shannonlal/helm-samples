@@ -23,7 +23,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: db-migration-job
-          image: docker.io/microsigns/db-migrate:1.0.0
+          image: docker.io/microsigns/k8s-db-migration:1.0.1
           imagePullPolicy: Always
           env:
             - name: DB_URL
