@@ -1,5 +1,5 @@
 package-lock.json
-k8s-sample/db-migrate/node_modules/
-k8s-sample/person-service/node_modules/
-k8s-sample/company-service/node_modules/
+helm-deployment/db-migrate/node_modules/
+helm-deployment/person-service/node_modules/
+helm-deployment/company-service/node_modules/
 .env

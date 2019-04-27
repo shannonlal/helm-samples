@@ -2,9 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: person
+  name: company
   labels:
-    app: person
+    app: company
     chart: {{ template "company.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,22 +12,22 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: person
+      app: company
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: person
+        app: company
         release: {{ .Release.Name }}
     spec:
       containers:
-        - name: person
-          image: docker.io/microsigns/k8s-person-service:1.0.8
+        - name: company
+          image: docker.io/microsigns/k8s-company-service:1.0.9
           imagePullPolicy: Always
           env:
             - name: DB_URL
               value: postgres://{{ .Values.database.user }}:{{ .Values.database.password }}@{{ .Values.database.host }}:5432/{{ .Values.database.name }}
-            - name: PERSON_PORT
+            - name: COMPANY_PORT
               value: "80"
           ports:
             - name: http
@@ -41,23 +41,23 @@ spec:
             failureThreshold: 5
           livenessProbe:
             httpGet:
-              path: /api/person
+              path: /api/company
               port: http
             initialDelaySeconds: 45
             periodSeconds: 20
             timeoutSeconds: 10
             failureThreshold: 5
           resources:
-{{ toYaml .Values.person.resources | indent 12 }}
-    {{- with .Values.person.nodeSelector }}
+{{ toYaml .Values.company.resources | indent 12 }}
+    {{- with .Values.company.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.person.affinity }}
+    {{- with .Values.company.affinity }}
       affinity:
 {{ toYaml . | indent 8 }}
     {{- end }}
-    {{- with .Values.person.tolerations }}
+    {{- with .Values.company.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
